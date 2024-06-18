@@ -57,7 +57,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    environment: Destruction
+    environment: Website
     needs: preview
     steps:
     - uses: actions/checkout@v3
