@@ -9,6 +9,7 @@ permissions:
 
 env:
   AZURE_RESOURCEGROUP_NAME: ToyWebsiteTest
+  GITHUB_ENVIRONMENT: Destruction
 
 jobs:
   lint:
@@ -57,7 +58,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    environment: Website
+    environment: ${{ env.GITHUB_ENVIRONMENT }}
     needs: preview
     steps:
     - uses: actions/checkout@v3
