@@ -55,7 +55,7 @@ jobs:
         template: destroy/destroy.bicep
         additionalArguments: --mode complete --what-if
 
-  deploy:
+  destroy:
     runs-on: ubuntu-latest
     environment: Website
     needs: preview
@@ -68,11 +68,11 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - uses: azure/arm-deploy@v1
-      id: deploy
-      name: Deploy website
+      id: destroy
+      name: destroy website
       with:
         failOnStdErr: false
-        deploymentName: ${{ github.run_number }}
+        deploymentName: destroy-${{ github.run_number }}
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./destroy/destroy.bicep
         additionalArguments: --mode complete
